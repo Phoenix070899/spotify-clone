@@ -3,9 +3,11 @@ import axios from "axios";
 import { useStateProvider } from "../StateProvider";
 import { reducerCases } from "../Constants";
 import SidebarOption from "../Sidebar/SidebarOptions";
-import { Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 const Playlists = () => {
-  const [{ token, playlists, followedAlbum }, dispatch] = useStateProvider();
+  const [{ token, playlists, followedAlbum, selectedPlaylistId }, dispatch] =
+    useStateProvider();
   useEffect(() => {
     const getPlaylistData = async () => {
       const response = await axios.get(
@@ -51,6 +53,7 @@ const Playlists = () => {
   }, [token, dispatch]);
 
   const changeCurrentPlaylist = (selectedPlaylistId) => {
+    console.log(selectedPlaylistId);
     dispatch({
       type: reducerCases.SET_PLAYLIST_ID,
       selectedPlaylistId,
@@ -62,18 +65,22 @@ const Playlists = () => {
       <ul>
         {playlists?.map(({ name, id }) => {
           return (
-            <li key={id} onClick={() => changeCurrentPlaylist(id)}>
-              <SidebarOption option={name} />
-            </li>
+            <Link to={"/playlist/" + selectedPlaylistId}>
+              <li key={id} onClick={() => changeCurrentPlaylist(id)}>
+                <SidebarOption option={name} />
+              </li>
+            </Link>
           );
         })}
       </ul>
       <ul>
         {followedAlbum?.map(({ name, id }) => {
           return (
-            <li key={id} onClick={() => changeCurrentPlaylist(id)}>
-              <SidebarOption option={name} />
-            </li>
+            <Link to={"/playlist/" + selectedPlaylistId}>
+              <li key={id} onClick={() => changeCurrentPlaylist(id)}>
+                <SidebarOption option={name} />
+              </li>
+            </Link>
           );
         })}
       </ul>
