@@ -1,7 +1,7 @@
 import React from "react";
 
 const Library = () => {
-  return <div>Search</div>;
+  return <div></div>;
 };
 
 export default Library;

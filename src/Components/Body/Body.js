@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./Body.css";
 import SelectedPlaylist from "../SelectedPlaylist/SelectedPlaylist";
+import SelectedPlaylistPage from "../../Page/SelectedPlaylistPage";
 import { Routes, Route } from "react-router-dom";
 import Home from "../../Page/Home";
 import Search from "../../Page/Search";
@@ -14,6 +15,7 @@ const Body = () => {
         <Route path="/search" element={<Search />}></Route>
         <Route path="/library" element={<Library />}></Route>
       </Routes>
+      <SelectedPlaylistPage />
     </div>
   );
 };
