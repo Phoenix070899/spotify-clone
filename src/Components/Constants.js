@@ -9,4 +9,5 @@ export const reducerCases = {
   SET_PLAYLIST_ID: "SET_PLAYLIST_ID",
   SET_SHUFFLE: "SET_SHUFFLE",
   SET_REPEAT: "SET_REPEAT",
+  SET_NEW_ALBUM: "SET_NEW_ALBUM",
 };

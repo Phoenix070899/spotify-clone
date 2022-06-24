@@ -7,7 +7,7 @@ const Login = () => {
 
   const handleClick = async () => {
     const api_uri = "https://accounts.spotify.com/authorize";
-    const redirect_uri = "https://spotify-clone-ochre-nine.vercel.app/";
+    const redirect_uri = "http://localhost:3000/home";
     const client_id = "3084998816f14c7888e711298b8adb29";
     const scope = [
       "user-read-private",

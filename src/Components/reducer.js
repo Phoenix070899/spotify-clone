@@ -8,9 +8,10 @@ export const initialState = {
   currentPlaying: null,
   playerState: false,
   selectedPlaylist: null,
-  selectedPlaylistId: "3vNL5VnqQ0MaJnjYPLCNk6",
+  selectedPlaylistId: null,
   setShuffle: false,
   setRepeat: false,
+  newReleaseAlbums: null,
 };
 
 const reducer = (state, action) => {
@@ -64,6 +65,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         setRepeat: action.setRepeat,
+      };
+    case reducerCases.SET_NEW_ALBUM:
+      return {
+        ...state,
+        newReleaseAlbums: action.newReleaseAlbums,
       };
 
     default:

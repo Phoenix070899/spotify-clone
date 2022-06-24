@@ -11,7 +11,7 @@ const Body = () => {
   return (
     <div>
       <Routes>
-        <Route path="/home" element={<Home />}></Route>
+        <Route exact path="/home" element={<Home />}></Route>
         <Route path="/search" element={<Search />}></Route>
         <Route path="/library" element={<Library />}></Route>
       </Routes>

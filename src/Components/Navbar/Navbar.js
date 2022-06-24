@@ -13,7 +13,7 @@ const Navbar = ({ navBackground }) => {
   return (
     <div
       id="navbar"
-      className="navbar w-9/12 text-white flex justify-between items-center p-4 fixed z-50"
+      className="navbar text-white flex justify-between items-center p-4 sticky top-0 right-0 left-0 z-50"
     >
       <div className="search_bar flex items-center rounded-full gap-2 px-4 bg-white text-black w-4/12">
         <div className="scale-110">

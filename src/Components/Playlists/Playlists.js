@@ -53,7 +53,6 @@ const Playlists = () => {
   }, [token, dispatch]);
 
   const changeCurrentPlaylist = (selectedPlaylistId) => {
-    console.log(selectedPlaylistId);
     dispatch({
       type: reducerCases.SET_PLAYLIST_ID,
       selectedPlaylistId,

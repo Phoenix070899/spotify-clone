@@ -9,49 +9,51 @@ const SelectedPlaylistPage = () => {
   const [{ token, selectedPlaylist, selectedPlaylistId, userInfo }, dispatch] =
     useStateProvider();
   useEffect(() => {
-    const getInitialPlaylist = async () => {
-      const response = await axios.get(
-        `https://api.spotify.com/v1/playlists/${selectedPlaylistId}`,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+    if (selectedPlaylistId) {
+      const getInitialPlaylist = async () => {
+        const response = await axios.get(
+          `https://api.spotify.com/v1/playlists/${selectedPlaylistId}`,
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
-      const durationArray = response.data.tracks.items.map((track) => {
-        return track.track.duration_ms;
-      });
-      const selectedPlaylist = {
-        id: response.data.id,
-        name: response.data.name,
-        description: response.data.description.startsWith("<a")
-          ? ""
-          : response.data.description,
-        duration: msToTimeLong(
-          durationArray.reduce((initial, acc) => {
-            return initial + acc;
-          }, 0)
-        ),
-        image: response.data.images[0].url,
-        tracks: response.data.tracks.items.map(({ track }) => ({
-          id: track.id,
-          name: track.name,
-          artists: track.artists.map((artist) => artist.name),
-          image: track.album.images[2].url,
-          duration: track.duration_ms,
-          album: track.album.name,
-          context_uri: track.album.uri,
-          track_number: track.track_number,
-        })),
+        const durationArray = response.data.tracks.items.map((track) => {
+          return track.track.duration_ms;
+        });
+        const selectedPlaylist = {
+          id: response.data.id,
+          name: response.data.name,
+          description: response.data.description.startsWith("<a")
+            ? ""
+            : response.data.description,
+          duration: msToTimeLong(
+            durationArray.reduce((initial, acc) => {
+              return initial + acc;
+            }, 0)
+          ),
+          image: response.data.images[0].url,
+          tracks: response.data.tracks.items.map(({ track }) => ({
+            id: track.id,
+            name: track.name,
+            artists: track.artists.map((artist) => artist.name),
+            image: track.album.images[2].url,
+            duration: track.duration_ms,
+            album: track.album.name,
+            context_uri: track.album.uri,
+            track_number: track.track_number,
+          })),
+        };
+        dispatch({
+          type: reducerCases.SET_PLAYLIST,
+          selectedPlaylist,
+        });
       };
-      dispatch({
-        type: reducerCases.SET_PLAYLIST,
-        selectedPlaylist,
-      });
-    };
-    getInitialPlaylist();
+      getInitialPlaylist();
+    }
   }, [token, dispatch, selectedPlaylistId]);
 
   const playTrack = async (
@@ -92,7 +94,7 @@ const SelectedPlaylistPage = () => {
     }
   };
   return (
-    <div className="body basis-11/12 w-full px-5 pt-24">
+    <div className="body px-5">
       {selectedPlaylist && (
         <div className="playlist text-white flex flex-col gap-10">
           <div className="playlist-header w-full flex gap-5 items-end font-semibold">

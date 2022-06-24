@@ -16,7 +16,6 @@ const CurrentTrack = () => {
           },
         }
       );
-      console.log(response.data);
       if (response.data != "") {
         const currentPlaying = {
           id: response.data.item.id,

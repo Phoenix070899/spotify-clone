@@ -47,7 +47,7 @@ const Spotify = () => {
       <div className="spotify_body flex h-full">
         <Sidebar />
         <div
-          className="spotify_body_content flex flex-col w-9/12 bg-gradient-to-t from-black to-gray-800 h-screen overflow-scroll pb-24"
+          className="spotify_body_content flex relative grow flex-col bg-gradient-to-t from-black to-gray-800 h-screen overflow-scroll pb-20"
           ref={bodyRef}
           onScroll={bodyScroll}
         >
